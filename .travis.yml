@@ -14,8 +14,7 @@ addons:
       name: "holisticon/jslint4java"
       description: "Build submitted via Travis CI"
     notification_email: martin.reinhardt@holisticon.de
-    build_command_prepend: "mvn clean"
-    build_command:   "mvn install -DskipTests=true -q"
+    build_command:   "mvn clean install -DskipTests=true"
     branch_pattern: coverity_scan
 
 # Run unit and integration tests
