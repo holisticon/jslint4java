@@ -1,5 +1,5 @@
-jslint for java <http://code.google.com/p/jslint4java/>
-=======================================================
+#jslint for java
+[![Build Status](https://api.travis-ci.org/holisticon/jslint4java.svg)](https://travis-ci.org/holisticon/jslint4java)
 
 This is a java wrapper around the fabulous tool by Douglas Crockford, jslint
 (See <http://jslint.com/>). It provides a simple interface for detecting
