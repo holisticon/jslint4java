@@ -1,0 +1,27 @@
+language: java
+sudo: false
+cache:
+  directories:
+  - $HOME/.m2
+jdk:
+- openjdk6
+#install: mvn install -DskipTests=true -q
+
+# Run build and push build to https://scan.coverity.com/
+addons:
+  coverity_scan:
+    project:
+      name: "holisticon/jslint4java"
+      description: "Build submitted via Travis CI"
+    notification_email: martin.reinhardt@holisticon.de
+    build_command_prepend: "mvn clean"
+    build_command:   "mvn install -DskipTests=true -q"
+    branch_pattern: coverity_scan
+
+# Run unit and integration tests
+script: mvn verify -B -q
+
+after_success: ! '[[ $TRAVIS_BRANCH == "master" && $TRAVIS_REPO_SLUG == "holisticon/jslint4java"
+  && $TRAVIS_PULL_REQUEST == "false" ]] && { curl https://raw.githubusercontent.com/holisticon/travis-configuration/master/settings.xml --location
+  --create-dirs -o target/travis/settings.xml; } && { mvn cobertura:cobertura coveralls:report deploy -q --settings target/travis/settings.xml
+  -Dgpg.skip=true; }'
